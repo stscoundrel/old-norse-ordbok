@@ -25,8 +25,7 @@ const oldNorseToEnglish = async () => {
   return words
 }
 
-
 module.exports = {
   englishToOldNorse,
-  oldNorseToEnglish
+  oldNorseToEnglish,
 }

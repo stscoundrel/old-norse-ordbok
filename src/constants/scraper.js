@@ -3,5 +3,5 @@ const DICTIONARY_URL_ON2EN = 'https://www.vikingsofbjornstad.com/Old_Norse_Dicti
 
 module.exports = {
   DICTIONARY_URL_EN2ON,
-  DICTIONARY_URL_ON2EN
+  DICTIONARY_URL_ON2EN,
 }

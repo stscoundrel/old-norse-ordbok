@@ -2,13 +2,10 @@
  * Scrape words & definitions from HTML table.
  */
 const getAll = async (page) => {
-
   const result = await page.evaluate(async () => {
     const words = []
 
-    const stripArtifacts = (element) => {
-      return element.innerHTML.replace(/<[^>]*>?/gm, '').trim()
-    }    
+    const stripArtifacts = (element) => element.innerHTML.replace(/<[^>]*>?/gm, '').trim()
 
     const rows = document.querySelectorAll('tr:not(.tableheader)')
 
@@ -16,22 +13,22 @@ const getAll = async (page) => {
      * Extract word & definition from dom elements.
      * Strip extra html & spaces.
      */
-    rows.forEach(row => {
+    rows.forEach((row) => {
       const left = row.querySelector('td:first-of-type')
       const right = row.querySelector('td:last-of-type')
 
-      if( left && right ) {
-        if( ! left.classList.contains('tableheader') ) {
+      if (left && right) {
+        if (!left.classList.contains('tableheader')) {
           const word = stripArtifacts(left)
           const translation = stripArtifacts(right)
 
           words.push({
-            word: word,
-            definition: translation
+            word,
+            definition: translation,
           })
         }
       }
-    })    
+    })
 
     return words
   })
@@ -40,5 +37,5 @@ const getAll = async (page) => {
 }
 
 module.exports = {
-  getAll
+  getAll,
 }
