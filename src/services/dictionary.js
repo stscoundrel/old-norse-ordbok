@@ -6,19 +6,30 @@ const getAll = async (page) => {
   const result = await page.evaluate(async () => {
     const words = []
 
+    const stripArtifacts = (element) => {
+      return element.innerHTML.replace(/<[^>]*>?/gm, '').trim()
+    }    
+
     const rows = document.querySelectorAll('tr:not(.tableheader)')
 
+    /**
+     * Extract word & definition from dom elements.
+     * Strip extra html & spaces.
+     */
     rows.forEach(row => {
       const left = row.querySelector('td:first-of-type')
       const right = row.querySelector('td:last-of-type')
 
       if( left && right ) {
-        const word = left.innerHTML
-        const translation = right.innerHTML
+        const word = stripArtifacts(left)
+        const translation = stripArtifacts(right)
 
-        words.push({[word]: translation})
+        words.push({
+          word: word,
+          definition: translation
+        })
       }
-    })
+    })    
 
     return words
   })
