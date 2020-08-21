@@ -1,9 +1,41 @@
 # Old Norse Orðbók
 
-Old Norse dictionary for Node.js. Scraped from online dictonary.
+[Old Norse](https://en.wikipedia.org/wiki/Old_Norse) dictionary for Node.js. Scraped from an online dictonary.
 
 Literal meaning: orð = word, bók = book.
 
+### Install
+
+`yarn add old-norse-ordbok`
+
+### Usage
+
+Orðbók scrapes the dictionary data using Puppeteer. The dictionary comes in two forms: either Old Norse -> English, or English -> Old Norse. The versions are not identical nor do they contain the same amount of words. This is a feature in the source material.
+
+Old Norse -> English: 4589 words.
+English -> Old Norse: 7712 words.
+
+Words are returned in array of:
+
+```javascript
+{
+    word: String,
+    definition: String
+}
+```
+
+Get dictionary data:
+
+```javascript
+const { oldNorseToEnglish, englishToOldNorse } = require('old-norse-ordbok')
+
+const oldNorse = await oldNorseToEnglish()
+const english = await englishToOldNorse()
+
+console.log(oldNorse)
+console.log(english)
+
+```
 
 ### Sources
 
