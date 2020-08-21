@@ -8,7 +8,7 @@ const { DICTIONARY_URL_EN2ON, DICTIONARY_URL_ON2EN } = constants
  * browser & page instances.
  */
 const getBrowser = async () => {
-  const browser = await puppeteer.launch(PUPPETEER_CONF)
+  const browser = await puppeteer.launch()
   const page = await browser.newPage()
 
   return { browser, page };
