@@ -21,13 +21,15 @@ const getAll = async (page) => {
       const right = row.querySelector('td:last-of-type')
 
       if( left && right ) {
-        const word = stripArtifacts(left)
-        const translation = stripArtifacts(right)
+        if( ! left.classList.contains('tableheader') ) {
+          const word = stripArtifacts(left)
+          const translation = stripArtifacts(right)
 
-        words.push({
-          word: word,
-          definition: translation
-        })
+          words.push({
+            word: word,
+            definition: translation
+          })
+        }
       }
     })    
 
