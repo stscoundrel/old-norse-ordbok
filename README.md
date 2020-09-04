@@ -4,6 +4,10 @@
 
 Literal meaning: orð = word, bók = book.
 
+#### Examples
+- [Orðbók Knex](https://github.com/stscoundrel/ordbok-knex) - SQL implementation with Knex.js
+- [Orðbók MongoDB](https://github.com/stscoundrel/ordbok-mongodb) - MongoDB implementation with default MongoDB driver.
+
 ### Install
 
 `yarn add old-norse-ordbok`
