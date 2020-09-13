@@ -51,7 +51,7 @@ const TYPES = [
   },
 ]
 
-const MARKUP = ['(n)', '(f)', '(m)', '(v)', '(vi)', '(vt)', '(pl)', '(adj)', '(adv)', '(pp)', '(conj)', '(pron)', '(num)', '(comp)']
+const MARKUP = ['(‡)', '(n)', '(f)', '(m)', '(v)', '(vi)', '(vt)', '(pl)', '(adj)', '(adv)', '(pp)', '(conj)', '(pron)', '(num)', '(comp)']
 
 module.exports = {
   EAST_NORSE_SIGN,
