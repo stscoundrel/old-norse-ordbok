@@ -1,4 +1,4 @@
-const { EAST_NORSE_SIGN, GENDERS } = require('../constants/dictionary')
+const { EAST_NORSE_SIGN, GENDERS, TYPES } = require('../constants/dictionary')
 
 /**
  * Original source has word type, gender etc
@@ -8,9 +8,11 @@ const { EAST_NORSE_SIGN, GENDERS } = require('../constants/dictionary')
 const formatWord = (word) => {
   const branch = getWordBranch(word.word)
   const gender = getWordGender(word.definition)
+  const type   = getWordType(word.definition)
 
   return {
     ...word,
+    type,
     gender,
     branch
   }
@@ -43,6 +45,21 @@ const getWordGender = (word) => {
   }
 
   return ''
+}
+
+/**
+ * Get word type from description.
+ */
+const getWordType = (word) => {
+  let wordType = ''
+
+  TYPES.forEach(type => {
+    if( word.includes(type.markup) ) {
+      wordType = type.type
+    }
+  })
+
+  return wordType
 }
 
 /**
