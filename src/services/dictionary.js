@@ -1,4 +1,4 @@
-const { EAST_NORSE_SIGN } = require('../constants/dictionary')
+const { EAST_NORSE_SIGN, GENDERS } = require('../constants/dictionary')
 
 /**
  * Original source has word type, gender etc
@@ -7,9 +7,11 @@ const { EAST_NORSE_SIGN } = require('../constants/dictionary')
  */
 const formatWord = (word) => {
   const branch = getWordBranch(word.word)
+  const gender = getWordGender(word.definition)
 
   return {
     ...word,
+    gender,
     branch
   }
 }
@@ -24,6 +26,23 @@ const getWordBranch = (word) => {
   }
 
   return 'Old West Norse'
+}
+
+/**
+ * Get word gender from description.
+ * Note: original source only has masc. & fem,
+ * not neuter gender.
+ */
+const getWordGender = (word) => {
+  if( word.includes(GENDERS.MASCULINE) ) {
+    return 'Masculine'
+  }
+
+  if( word.includes(GENDERS.FEMININE) ) {
+    return 'feminine'
+  }
+
+  return ''
 }
 
 /**
