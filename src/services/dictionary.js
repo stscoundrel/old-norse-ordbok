@@ -1,7 +1,10 @@
+const { formatWord } = require('./words')
+
 /**
- * Scrape words & definitions from HTML table.
+ * Scrape words from online.
+ * Only do basic html cleaning.
  */
-const getAll = async (page) => {
+const scrapeWords = async (page) => {
   const result = await page.evaluate(async () => {
     const words = []
 
@@ -34,6 +37,17 @@ const getAll = async (page) => {
   })
 
   return result
+}
+
+/**
+ * Scrape words & definitions from HTML table.
+ */
+const getAll = async (page) => {
+  const rawWords = await scrapeWords(page)
+
+  const words = rawWords.map((word) => formatWord(word))
+
+  return words
 }
 
 module.exports = {

@@ -25,7 +25,10 @@ Words are returned in array of:
 ```javascript
 {
     word: String,
-    definition: String
+    definition: String,
+    type: String,
+    gender: String,
+    branch: String,
 }
 ```
 
