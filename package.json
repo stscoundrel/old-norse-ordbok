@@ -21,6 +21,6 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "fix": "eslint . --fix"
   }
 }

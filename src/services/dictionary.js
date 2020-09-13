@@ -1,4 +1,6 @@
-const { EAST_NORSE_SIGN, GENDERS, TYPES } = require('../constants/dictionary')
+const {
+  EAST_NORSE_SIGN, GENDERS, TYPES, MARKUP,
+} = require('../constants/dictionary')
 
 /**
  * Original source has word type, gender etc
@@ -8,13 +10,14 @@ const { EAST_NORSE_SIGN, GENDERS, TYPES } = require('../constants/dictionary')
 const formatWord = (word) => {
   const branch = getWordBranch(word.word)
   const gender = getWordGender(word.definition)
-  const type   = getWordType(word.definition)
+  const type = getWordType(word.definition)
 
   return {
-    ...word,
+    word: cleanMarkup(word.word),
+    definition: cleanMarkup(word.definition),
     type,
     gender,
-    branch
+    branch,
   }
 }
 
@@ -23,7 +26,7 @@ const formatWord = (word) => {
  * East Norse is marked with (‡) sign.
  */
 const getWordBranch = (word) => {
-  if( word.includes(EAST_NORSE_SIGN) ) {
+  if (word.includes(EAST_NORSE_SIGN)) {
     return 'Old East Norse'
   }
 
@@ -36,11 +39,11 @@ const getWordBranch = (word) => {
  * not neuter gender.
  */
 const getWordGender = (word) => {
-  if( word.includes(GENDERS.MASCULINE) ) {
+  if (word.includes(GENDERS.MASCULINE)) {
     return 'Masculine'
   }
 
-  if( word.includes(GENDERS.FEMININE) ) {
+  if (word.includes(GENDERS.FEMININE)) {
     return 'feminine'
   }
 
@@ -53,13 +56,26 @@ const getWordGender = (word) => {
 const getWordType = (word) => {
   let wordType = ''
 
-  TYPES.forEach(type => {
-    if( word.includes(type.markup) ) {
+  TYPES.forEach((type) => {
+    if (word.includes(type.markup)) {
       wordType = type.type
     }
   })
 
   return wordType
+}
+
+/**
+ * Clean additional type markup after extraction.
+ */
+const cleanMarkup = (content) => {
+  let cleanContent = content
+
+  MARKUP.forEach((sign) => {
+    cleanContent = cleanContent.replace(sign, '')
+  })
+
+  return cleanContent.trim()
 }
 
 /**
@@ -107,8 +123,8 @@ const scrapeWords = async (page) => {
 const getAll = async (page) => {
   const rawWords = await scrapeWords(page)
 
-  const words = rawWords.map(word => formatWord(word))
-  
+  const words = rawWords.map((word) => formatWord(word))
+
   return words
 }
 

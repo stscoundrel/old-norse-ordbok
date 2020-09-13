@@ -1,58 +1,61 @@
 const EAST_NORSE_SIGN = '(‡)'
-const GENDERS = { 'MASCULINE': '(m)', 'FEMININE': '(f)' }
+const GENDERS = { MASCULINE: '(m)', FEMININE: '(f)' }
 const TYPES = [
   {
     type: 'Noun',
-    markup: '(n)'
+    markup: '(n)',
   },
   {
     type: 'Verb',
-    markup: '(v)'
+    markup: '(v)',
   },
   {
     type: 'Verb, intransive.',
-    markup: '(vi)'
+    markup: '(vi)',
   },
   {
     type: 'Verb, transitive.',
-    markup: '(vt)'
+    markup: '(vt)',
   },
   {
     type: 'Plural',
-    markup: '(pl)'
+    markup: '(pl)',
   },
   {
     type: 'Past participle',
-    markup: '(pp)'
+    markup: '(pp)',
   },
   {
     type: 'Adjective',
-    markup: '(adj)'
+    markup: '(adj)',
   },
   {
     type: 'Adverb',
-    markup: '(adv)'
+    markup: '(adv)',
   },
   {
     type: 'Conjunction',
-    markup: '(conj)'
+    markup: '(conj)',
   },
   {
     type: 'Prononun',
-    markup: '(pron)'
+    markup: '(pron)',
   },
   {
     type: 'Number',
-    markup: '(num)'
+    markup: '(num)',
   },
   {
     type: 'Comparative',
-    markup: '(comp)'
-  }
+    markup: '(comp)',
+  },
 ]
+
+const MARKUP = ['(n)', '(f)', '(m)', '(v)', '(vi)', '(vt)', '(pl)', '(adj)', '(adv)', '(pp)', '(conj)', '(pron)', '(num)', '(comp)']
 
 module.exports = {
   EAST_NORSE_SIGN,
   GENDERS,
   TYPES,
+  MARKUP,
 }
