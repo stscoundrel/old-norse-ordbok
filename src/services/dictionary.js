@@ -1,7 +1,36 @@
+const { EAST_NORSE_SIGN } = require('../constants/dictionary')
+
 /**
- * Scrape words & definitions from HTML table.
+ * Original source has word type, gender etc
+ * Hidden in name & desc.
+ * Separate them into own fields.
  */
-const getAll = async (page) => {
+const formatWord = (word) => {
+  const branch = getWordBranch(word.word)
+
+  return {
+    ...word,
+    branch
+  }
+}
+
+/**
+ * Old West / Old East Norse separation.
+ * East Norse is marked with (‡) sign.
+ */
+const getWordBranch = (word) => {
+  if( word.includes(EAST_NORSE_SIGN) ) {
+    return 'Old East Norse'
+  }
+
+  return 'Old West Norse'
+}
+
+/**
+ * Scrape words from online.
+ * Only do basic html cleaning.
+ */
+const scrapeWords = async (page) => {
   const result = await page.evaluate(async () => {
     const words = []
 
@@ -34,6 +63,17 @@ const getAll = async (page) => {
   })
 
   return result
+}
+
+/**
+ * Scrape words & definitions from HTML table.
+ */
+const getAll = async (page) => {
+  const rawWords = await scrapeWords(page)
+
+  const words = rawWords.map(word => formatWord(word))
+  
+  return words
 }
 
 module.exports = {
