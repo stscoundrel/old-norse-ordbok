@@ -1,6 +1,6 @@
 {
   "name": "old-norse-ordbok",
-  "version": "0.9.1",
+  "version": "1.0.0",
   "description": "Old Norse dictionary for Node.js. Scraped from online dictonary.",
   "main": "index.js",
   "repository": "https://github.com/stscoundrel/old-norse-ordbok.git",
